@@ -7,10 +7,9 @@ import { Component } from '@angular/core';
 })
 export class TimerPage {
 
+  currentTab = 'greenTea';
+
   constructor() {}
 
-  segmentChanged(ev: any) {
-    console.log('Segment changed', ev);
-  }
 
 }

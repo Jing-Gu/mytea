@@ -1,0 +1,24 @@
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  ion-text {
+    padding-bottom: 12px;
+    color: #444;
+    position: relative;
+    &.active {
+      color: lightcoral;
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 3px;
+        border-radius: 2px;
+        background-color: lightcoral;
+        content: '';
+      }
+    }
+
+  }
+}
