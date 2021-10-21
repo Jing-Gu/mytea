@@ -1,3 +1,21 @@
-<p>
-  brewguide works! For {{currentTea}}
-</p>
+
+<ion-grid>
+  <ion-row>
+    <ion-col class='ion-text-center'>
+      <p>{{tea?.teaAmount}}<span>g</span></p>
+      <ion-icon name="leaf-outline"></ion-icon>
+    </ion-col>
+    <ion-col class='ion-text-center'>
+      <p>{{tea?.waterAmount}}<span>ml</span></p>
+      <ion-icon name="water-outline"></ion-icon>
+    </ion-col>
+    <ion-col class='ion-text-center'>
+      <p>{{tea?.temperature}}<span>˚C</span></p>
+      <ion-icon name="thermometer-outline"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+

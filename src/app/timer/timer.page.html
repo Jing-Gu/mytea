@@ -2,17 +2,19 @@
   <ion-toolbar class='ion-no-padding'>
     <!-- <ion-text><h2>Make a tea</h2></ion-text> -->
     <div class='tabs'>
-      <ion-text (click)="currentTab = 'greenTea'" [ngClass]="{'active': currentTab === 'greenTea'}">Green</ion-text>
-      <ion-text (click)="currentTab = 'oolongTea'" [ngClass]="{'active': currentTab === 'oolongTea'}">Oolong</ion-text>
-      <ion-text (click)="currentTab = 'redTea'" [ngClass]="{'active': currentTab === 'redTea'}">Red</ion-text>
-      <ion-text (click)="currentTab = 'puerTea'" [ngClass]="{'active': currentTab === 'puerTea'}">Pu-er</ion-text>
-      <ion-text (click)="currentTab = 'herbalTea'" [ngClass]="{'active': currentTab === 'herbalTea'}">Herbal</ion-text>
+      <ion-text (click)='chooseTea("green")' [ngClass]="{'active': currentTab === 'green'}">Green</ion-text>
+      <ion-text (click)='chooseTea("oolong")'[ngClass]="{'active': currentTab === 'oolong'}">Oolong</ion-text>
+      <ion-text (click)='chooseTea("red")' [ngClass]="{'active': currentTab === 'red'}">Red</ion-text>
+      <ion-text (click)='chooseTea("puer")' [ngClass]="{'active': currentTab === 'puer'}">Pu-er</ion-text>
+      <ion-text (click)='chooseTea("herbal")' [ngClass]="{'active': currentTab === 'herbal'}">Herbal</ion-text>
     </div>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
-  <app-brewguide [currentTea]="currentTab"></app-brewguide>
-  <app-brewtimer [currentTea]="currentTab"></app-brewtimer>
+  <div class='timer-inner'>
+    <app-brewguide [currentTea]='currentTea'></app-brewguide>
+    <app-brewtimer [currentTea]='currentTea'></app-brewtimer>
+  </div>
 </ion-content>

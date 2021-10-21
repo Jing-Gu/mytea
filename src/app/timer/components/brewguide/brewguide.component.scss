@@ -1,0 +1,12 @@
+ion-grid{
+  background: #e0e0e0;
+}
+
+ion-col{
+  ::ng-deep{
+    ion-icon{
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
