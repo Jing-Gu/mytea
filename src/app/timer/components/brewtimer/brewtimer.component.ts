@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Tea } from '../models/tea.interface';
 
 @Component({
@@ -10,7 +11,7 @@ export class BrewtimerComponent implements OnInit, OnChanges {
 
   @Input() currentTea: Tea;
   prevTea: Tea;
-  CurrTea: Tea;
+  currTea: Tea;
   brewSeconds: number;
   brewMinutes: number;
   secondsLeft: number;
@@ -22,7 +23,7 @@ export class BrewtimerComponent implements OnInit, OnChanges {
   timerIsOn = false;
   timerIsCompleted = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     //this.tab = this.currentTab;
@@ -31,11 +32,11 @@ export class BrewtimerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.checkDefaultBrewTime(this.currentTea.brewTime);
-    for(let property in changes) {
+    for(const property in changes) {
       if (property === 'currentTea') {
         this.prevTea = changes[property].previousValue;
-        this.CurrTea = changes[property].currentValue;
-        if(this.prevTea && this.prevTea != this.CurrTea) {
+        this.currTea = changes[property].currentValue;
+        if(this.prevTea && this.prevTea !== this.currTea) {
           this.resetTimer();
         }
       }
@@ -51,7 +52,8 @@ export class BrewtimerComponent implements OnInit, OnChanges {
       this.brewMinutes = Math.floor(brewSecondsDefault/60);
       this.brewSeconds = brewSecondsDefault % 60;
     }
-    this.brewingTimeDefault = `${this.brewMinutes < 1 ? '0' : ''}${this.brewMinutes}:${this.brewSeconds < 10 ? '0' : ''}${this.brewSeconds}`;
+    this.brewingTimeDefault = `
+      ${this.brewMinutes < 1 ? '0' : ''}${this.brewMinutes}:${this.brewSeconds < 10 ? '0' : ''}${this.brewSeconds}`;
     this.brewingTime = this.brewingTimeDefault;
   }
 
@@ -70,15 +72,15 @@ export class BrewtimerComponent implements OnInit, OnChanges {
       this.countdown = setInterval( () => {
         this.secondsLeft = Math.round((then - Date.now()) / 1000);
         this.gaugePercent = 100 - Math.ceil((this.secondsLeft / seconds) * 100);
-        console.log('left', this.secondsLeft, '%', this.gaugePercent);
         if (this.secondsLeft < 0) {
           clearInterval(this.countdown);
           this.displayTimeLeft(0);
           console.log('complete'); //make a snack bar
           this.timerIsCompleted = true;
-          return
+          return;
         }
         this.displayTimeLeft(this.secondsLeft);
+        console.log('left', this.secondsLeft, '%', this.gaugePercent);
       }, 1000);
   }
 
@@ -94,5 +96,10 @@ export class BrewtimerComponent implements OnInit, OnChanges {
     this.gaugePercent = 0;
     this.brewingTime = this.brewingTimeDefault;
     console.log('reset');
+  }
+
+  goToCustomize() {
+    this.resetTimer();
+    this.router.navigate(['/tabs/customize-timer']);
   }
 }

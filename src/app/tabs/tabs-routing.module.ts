@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../timer/timer.module').then(m => m.TimerPageModule)
       },
       {
+        path: 'customize-timer',
+        loadChildren: () => import('../timer/customize-timer/customize-timer.module').then(m => m.CustomizeTimerPageModule)
+      },
+      {
         path: 'read',
         loadChildren: () => import('../read/read.module').then(m => m.ReadPageModule)
       },

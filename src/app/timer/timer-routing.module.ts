@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: TimerPage,
+  },
+  {
+    path: 'customize-timer',
+    loadChildren: () => import('./customize-timer/customize-timer.module').then( m => m.CustomizeTimerPageModule)
   }
 ];
 
