@@ -8,41 +8,37 @@
 
 <ion-content>
   <form (ngSubmit)='setNewTimer(timerForm)' #timerForm='ngForm'>
-    <ion-item>
-      <ion-label position='floating'>Minutes</ion-label>
-      <ion-input type='number' name='minutes' required ngModel #minute='ngModel'></ion-input>
-      <small *ngIf='!minute.valid && minute.touched'>Please enter a valid number for the minutes.</small>
-    </ion-item>
-    <ion-item>
-      <ion-label position='floating'>Seconds</ion-label>
-      <ion-input type='number' name='seconds' required ngModel #second='ngModel'></ion-input>
-      <small *ngIf='!second.valid && second.touched'>Please enter a valid number for the seconds.</small>
-    </ion-item>
-
-    <div class='timer'>
-      <ngx-gauge type='full' cap='round' size='180' thick='10' [value]='gaugePercent'>
-        <ngx-gauge-label>
-          <img src='assets/teacup.svg' alt=''>
-          </ngx-gauge-label>
-      </ngx-gauge>
-      <ion-text *ngIf='timerIsCompleted' class='ion-text-center'>Your tea is ready!</ion-text>
-      <p *ngIf='!timerIsOn' class='time-display'>_ _ : _ _</p>
-      <p *ngIf='timerIsOn' class='time-display'>{{ brewingTime }}</p>
+    <div class='flex-box'>
+      <ion-item>
+        <ion-label position='floating'>Minutes</ion-label>
+        <ion-input type='number' name='minutes' min='0' required ngModel #minute='ngModel'></ion-input>
+        <small *ngIf='!minute.valid && minute.touched'>Please enter a valid number for the minutes.</small>
+      </ion-item>
+      <ion-item>
+        <ion-label position='floating'>Seconds</ion-label>
+        <ion-input type='number' name='seconds' min='0' required ngModel #second='ngModel'></ion-input>
+        <small *ngIf='!second.valid && second.touched'>Please enter a valid number for the seconds.</small>
+      </ion-item>
     </div>
 
-    <div class='actions'>
-      <ng-container *ngIf='!timerIsOn'>
-        <ion-button color='primary' shape='round' size='large' type='submit' [disabled]='!minute.valid || !second.valid'>
-          Start brewing
-          <ion-icon slot='end' name="cafe-outline"></ion-icon>
-        </ion-button>
-      </ng-container>
-      <ng-container *ngIf='timerIsOn'>
-        <ion-button color='danger' shape='round' size='large' (click)='resetTimer()'>
-          Reset timer
-          <ion-icon slot='end' name="close-circle-outline"></ion-icon>
-        </ion-button>
-      </ng-container>
+    <app-timercountdown [customizedTimer]='customizedTimeInSeconds'></app-timercountdown>
+
+    <div class='flex-box'>
+      <div class='actions'>
+        <ng-container *ngIf='!timerIsOn'>
+          <ion-button color='primary' shape='round' size='large' type='submit' [disabled]='!minute.valid || !second.valid'>
+            Start brewing child
+            <ion-icon slot='end' name="cafe-outline"></ion-icon>
+          </ion-button>
+        </ng-container>
+        <ng-container *ngIf='timerIsOn'>
+          <ion-button color='danger' shape='round' size='large' (click)='resetTimer(timerForm)'>
+            Reset timer
+            <ion-icon slot='end' name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ng-container>
+      </div>
     </div>
+
   </form>
 </ion-content>

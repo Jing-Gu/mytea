@@ -1,13 +1,5 @@
 <div class='timer-wrapper'>
-  <div class='timer'>
-    <ngx-gauge type='full' cap='round' size='180' thick='10' [value]='gaugePercent'>
-      <ngx-gauge-label>
-        <img src='assets/teacup.svg' alt=''>
-        </ngx-gauge-label>
-    </ngx-gauge>
-    <ion-text *ngIf='timerIsCompleted' class='ion-text-center'>Your tea is ready!</ion-text>
-    <p class='time-display'>{{ brewingTime }}</p>
-  </div>
+  <app-timercountdown [currentTea]='currentTea'></app-timercountdown>
 
   <div class='actions'>
     <ng-container *ngIf='!timerIsOn'>
@@ -22,7 +14,6 @@
         <ion-icon slot='end' name="close-circle-outline"></ion-icon>
       </ion-button>
     </ng-container>
-
     <ion-button shape='round' fill='outline' size='large' (click)='goToCustomize()'>
       Customize my timer
       <ion-icon slot='end' name="time-outline"></ion-icon>

@@ -1,6 +1,5 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class='ion-no-padding'>
-    <!-- <ion-text><h2>Make a tea</h2></ion-text> -->
     <div class='tabs'>
       <ion-text (click)='chooseTea("green")' [ngClass]="{'active': currentTab === 'green'}">Green</ion-text>
       <ion-text (click)='chooseTea("oolong")'[ngClass]="{'active': currentTab === 'oolong'}">Oolong</ion-text>
@@ -10,7 +9,6 @@
     </div>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content [fullscreen]="true">
   <div class='timer-inner'>

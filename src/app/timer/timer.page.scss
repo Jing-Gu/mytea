@@ -6,11 +6,10 @@ ion-header {
 
 .tabs {
   padding: 40px 20px 0 20px;
-  border-bottom: 1px solid #ccc;
+  background: #DCE5DF;
 }
 
 .timer-inner{
-  min-height: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
 }

@@ -6,7 +6,7 @@
     color: #444;
     position: relative;
     &.active {
-      color: lightcoral;
+      color: #679186;
       &:after {
         position: absolute;
         bottom: 0;
@@ -15,7 +15,7 @@
         width: 30px;
         height: 3px;
         border-radius: 2px;
-        background-color: lightcoral;
+        background-color: #679186;
         content: '';
       }
     }
