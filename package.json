@@ -7,7 +7,7 @@
     "ng": "ng",
     "dev": "ng serve --port 4500",
     "build": "ng build",
-    "deploy": "gh-pages -d www",
+    "deploy": "gh-pages -d docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
