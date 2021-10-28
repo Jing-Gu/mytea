@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Tea } from '../components/models/tea.interface'
+import { Tea } from '../components/models/tea.interface';
 import { TimerService } from '../timer.service';
 
 @Component({
