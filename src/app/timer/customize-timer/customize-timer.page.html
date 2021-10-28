@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color='primary'>
     <ion-buttons slot='start'>
-      <ion-back-button defaultHref='tabs'></ion-back-button>
+      <ion-back-button defaultHref='tabs' [disabled]='timerIsOn'></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -21,24 +21,20 @@
       </ion-item>
     </div>
 
-    <app-timercountdown [customizedTimer]='customizedTimeInSeconds'></app-timercountdown>
+    <app-timercountdown [currentTea]='customizeTea' [customizedTimer]='customizedTimeInSeconds'
+      [timerIsOn]='timerIsOn'></app-timercountdown>
 
-    <div class='flex-box'>
-      <div class='actions'>
-        <ng-container *ngIf='!timerIsOn'>
-          <ion-button color='primary' shape='round' size='large' type='submit' [disabled]='!minute.valid || !second.valid'>
-            Start brewing child
-            <ion-icon slot='end' name="cafe-outline"></ion-icon>
-          </ion-button>
-        </ng-container>
-        <ng-container *ngIf='timerIsOn'>
-          <ion-button color='danger' shape='round' size='large' (click)='resetTimer(timerForm)'>
-            Reset timer
-            <ion-icon slot='end' name="close-circle-outline"></ion-icon>
-          </ion-button>
-        </ng-container>
-      </div>
+    <div class='actions'>
+      <ng-container *ngIf='!timerIsOn'>
+        <ion-button color='primary' shape='round' size='large' type='submit' [disabled]='!minute.valid || !second.valid'>
+          Start brewing
+        </ion-button>
+      </ng-container>
+      <ng-container *ngIf='timerIsOn'>
+        <ion-button color='danger' shape='round' size='large' (click)='resetTimer(timerForm)'>
+          Reset timer
+        </ion-button>
+      </ng-container>
     </div>
-
   </form>
 </ion-content>

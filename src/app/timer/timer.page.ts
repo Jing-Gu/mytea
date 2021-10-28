@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TimerService } from './timer.service';
 import { AllTeas } from './components/models/allTea.model';
 import { Tea } from './components/models/tea.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-timer',
@@ -51,20 +52,41 @@ export class TimerPage implements OnInit {
       waterAmount: 250,
       temperature: 90,
       brewTime: 120
+    },
+    customizeTea: {
+      name: 'customization',
+      color: 'none',
+      teaAmount: 0,
+      waterAmount: 0,
+      temperature: 0,
+      brewTime: 0
     }
   };
 
   currentTab = 'green';
   currentTea = this.allTeas.green;
+  timerIsOn = false;
 
-  constructor() {}
+  constructor(private timerService: TimerService,
+    private cdf: ChangeDetectorRef) {}
 
   ngOnInit() {
-    //this.currentTab = 'greenTea';
+    this.timerService.timerIsCompleted$.subscribe(comp => {
+      if (!comp) {
+        this.timerIsOn = true;
+        this.cdf.detectChanges();
+      } else {
+        this.timerIsOn = false;
+        this.cdf.detectChanges();
+      }
+    });
   }
 
   chooseTea(tea) {
-    this.currentTea = this.allTeas[tea];
-    this.currentTab = tea;
+    if(!this.timerIsOn) {
+      this.currentTea = this.allTeas[tea];
+      this.currentTab = tea;
+    }
   };
+
 }

@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxGaugeModule } from 'ngx-gauge';
+import { TimercountdownComponent } from './timercountdown/timercountdown.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [TimercountdownComponent],
   imports: [
     CommonModule
   ],
   exports: [
-    NgxGaugeModule
+    NgxGaugeModule,
+    TimercountdownComponent
   ]
 })
 export class SharedModule { }

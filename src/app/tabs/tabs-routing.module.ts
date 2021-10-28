@@ -9,11 +9,15 @@ const routes: Routes = [
     children: [
       {
         path: 'timer',
-        loadChildren: () => import('../timer/timer.module').then(m => m.TimerPageModule)
-      },
-      {
-        path: 'customize-timer',
-        loadChildren: () => import('../timer/customize-timer/customize-timer.module').then(m => m.CustomizeTimerPageModule)
+        children: [
+          { path: '',
+            loadChildren: () => import('../timer/timer.module').then(m => m.TimerPageModule)
+          },
+          {
+            path: 'customize-timer',
+            loadChildren: () => import('../timer/customize-timer/customize-timer.module').then(m => m.CustomizeTimerPageModule)
+          }
+        ]
       },
       {
         path: 'read',

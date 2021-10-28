@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { AllTeas } from './components/models/allTea.model';
 import { Tea } from './components/models/tea.interface';
 
@@ -8,13 +8,13 @@ import { Tea } from './components/models/tea.interface';
 })
 export class TimerService {
   currentTea: Tea;
-  timerIsOn = new BehaviorSubject<boolean>(false);
-  timerIsOn$ = this.timerIsOn.asObservable();
+  //timerIsOn = new BehaviorSubject<boolean>(false);
+  //timerIsOn$ = this.timerIsOn.asObservable();
+
+  timerIsCompletedSub = new Subject<boolean>();
+  timerIsCompleted$ = this.timerIsCompletedSub.asObservable();
 
   constructor() { }
 
-  switchTimer(onOffValue: boolean) {
-    this.timerIsOn.next(onOffValue);
-  }
 
 }

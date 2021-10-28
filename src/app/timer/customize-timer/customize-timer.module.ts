@@ -6,8 +6,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { CustomizeTimerPageRoutingModule } from './customize-timer-routing.module';
 import { CustomizeTimerPage } from './customize-timer.page';
 
-import { TimercountdownComponent } from '../components/timercountdown/timercountdown.component'
-
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +14,6 @@ import { TimercountdownComponent } from '../components/timercountdown/timercount
     SharedModule,
     CustomizeTimerPageRoutingModule
   ],
-  declarations: [CustomizeTimerPage,TimercountdownComponent]
+  declarations: [CustomizeTimerPage]
 })
 export class CustomizeTimerPageModule {}

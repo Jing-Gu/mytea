@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-
 @Component({
   selector: 'app-teareadypopup',
   templateUrl: './teareadypopup.component.html',
@@ -12,8 +11,8 @@ export class TeareadypopupComponent implements OnInit {
 
   ngOnInit() {}
 
-  async dismissPopover() {
-    await this.popoverController.dismiss();
+  dismissPopover() {
+    this.popoverController.dismiss();
   }
 
 }

@@ -18,7 +18,9 @@ export class BrewguideComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.tea = this.currentTea;
+    if (this.currentTea) {
+      this.tea = this.currentTea;
+    }
   }
 
 }

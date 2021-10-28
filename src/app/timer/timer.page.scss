@@ -5,9 +5,36 @@ ion-header {
 }
 
 .tabs {
+  display: flex;
+  justify-content: space-between;
   padding: 40px 20px 0 20px;
-  background: #DCE5DF;
+  background: var(--green-grey);
+  ion-text {
+    padding-bottom: 12px;
+    position: relative;
+    &:not(.active) {
+      color: var(--green-800);
+    }
+    &.active {
+      color: var(--green-500);
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 3px;
+        border-radius: 2px;
+        background-color: var(--green-500);
+        content: '';
+      }
+    }
+    &.disable:not(.active) {
+      color: var(--green-text-disable);
+    }
+  }
 }
+
 
 .timer-inner{
   display: grid;

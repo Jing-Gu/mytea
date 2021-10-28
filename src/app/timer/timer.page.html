@@ -1,11 +1,11 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class='ion-no-padding'>
     <div class='tabs'>
-      <ion-text (click)='chooseTea("green")' [ngClass]="{'active': currentTab === 'green'}">Green</ion-text>
-      <ion-text (click)='chooseTea("oolong")'[ngClass]="{'active': currentTab === 'oolong'}">Oolong</ion-text>
-      <ion-text (click)='chooseTea("red")' [ngClass]="{'active': currentTab === 'red'}">Red</ion-text>
-      <ion-text (click)='chooseTea("puer")' [ngClass]="{'active': currentTab === 'puer'}">Pu-er</ion-text>
-      <ion-text (click)='chooseTea("herbal")' [ngClass]="{'active': currentTab === 'herbal'}">Herbal</ion-text>
+      <ion-text (click)='chooseTea("green")' [class.active]="currentTab === 'green'" [class.disable]='timerIsOn'>Green</ion-text>
+      <ion-text (click)='chooseTea("oolong")'[class.active]="currentTab === 'oolong'" [class.disable]='timerIsOn'>Oolong</ion-text>
+      <ion-text (click)='chooseTea("red")' [class.active]="currentTab === 'red'" [class.disable]='timerIsOn'>Red</ion-text>
+      <ion-text (click)='chooseTea("puer")' [class.active]="currentTab === 'puer'" [class.disable]='timerIsOn'>Pu-er</ion-text>
+      <ion-text (click)='chooseTea("herbal")' [class.active]="currentTab === 'herbal'" [class.disable]='timerIsOn'>Herbal</ion-text>
     </div>
   </ion-toolbar>
 </ion-header>
