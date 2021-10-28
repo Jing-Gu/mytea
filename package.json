@@ -2,7 +2,7 @@
   "name": "teaguru",
   "version": "0.0.1",
   "author": "Jing Gu",
-  "homepage": "https://github.com/Jing-Gu/teaguru",
+  "homepage": "https://jing-gu.github.io/mytea/",
   "scripts": {
     "ng": "ng",
     "dev": "ng serve --port 4500",
