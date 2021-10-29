@@ -8,7 +8,8 @@ import { TimercountdownComponent } from './timercountdown/timercountdown.compone
 @NgModule({
   declarations: [TimercountdownComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    NgxGaugeModule
   ],
   exports: [
     NgxGaugeModule,
