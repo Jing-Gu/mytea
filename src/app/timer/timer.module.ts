@@ -7,6 +7,7 @@ import { TimerPage } from './timer.page';
 import { TimerPageRoutingModule } from './timer-routing.module';
 import { BrewguideComponent } from './components/brewguide/brewguide.component';
 import { BrewtimerComponent } from './components/brewtimer/brewtimer.component';
+import { TeareadypopupComponent } from './components/teareadypopup/teareadypopup.component';
 @NgModule({
   imports: [
     IonicModule,
@@ -15,6 +16,6 @@ import { BrewtimerComponent } from './components/brewtimer/brewtimer.component';
     SharedModule,
     TimerPageRoutingModule
   ],
-  declarations: [TimerPage, BrewguideComponent, BrewtimerComponent]
+  declarations: [TimerPage, BrewguideComponent, BrewtimerComponent, TeareadypopupComponent]
 })
 export class TimerPageModule {}
