@@ -6,8 +6,8 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve --port 4500",
-    "build": "ng build",
-    "deploy": "ng deploy --base-href=/mytea/",
+    "build": "ionic build --prod -- --base-href https://jing-gu.github.io/mytea/",
+    "deploy": "npx angular-cli-ghpages --dir=www/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
