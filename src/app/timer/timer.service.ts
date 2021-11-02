@@ -8,11 +8,15 @@ import { Tea } from './components/models/tea.interface';
 })
 export class TimerService {
   currentTea: Tea;
-  //timerIsOn = new BehaviorSubject<boolean>(false);
-  //timerIsOn$ = this.timerIsOn.asObservable();
 
   timerIsCompletedSub = new Subject<boolean>();
   timerIsCompleted$ = this.timerIsCompletedSub.asObservable();
+
+  disableTabSub = new Subject<boolean>();
+  disableTab$ = this.disableTabSub.asObservable();
+
+  resetFormSub =  new Subject<boolean>();
+  resetForm$ = this.resetFormSub.asObservable();
 
   constructor() { }
 

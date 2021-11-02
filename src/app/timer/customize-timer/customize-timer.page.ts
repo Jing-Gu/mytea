@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Tea } from '../components/models/tea.interface';
 import { TimerService } from '../timer.service';
 
@@ -22,36 +23,34 @@ export class CustomizeTimerPage implements OnInit, OnDestroy {
   };
 
   cuztomizeTimerForm: NgForm;
+  resetFormSub: Subscription;
 
   constructor(private timerService: TimerService) { }
 
   ngOnInit() {
-    this.timerService.timerIsCompleted$.subscribe(comp => {
-      console.log('completed full?', comp);
-      if(comp) {
+    this.resetFormSub = this.timerService.resetForm$.subscribe(reset => {
+      if (reset) {
         this.timerIsOn = false;
         this.cuztomizeTimerForm.resetForm();
       }
     });
-    console.log('from customized, timer is on?', this.timerIsOn);
   }
 
   setNewTimer(timerForm: NgForm) {
     this.timerIsOn = true;
     this.cuztomizeTimerForm = timerForm;
     this.customizedTimeInSeconds = timerForm.value.minutes * 60 + timerForm.value.seconds;
-    console.log(timerForm.value);
   }
 
   resetTimer(timerForm: NgForm) {
     this.timerIsOn = false;
     this.timerService.timerIsCompletedSub.next(true);
     timerForm.resetForm();
-    console.log('reset from cuz timer');
   }
 
   ngOnDestroy() {
     this.timerService.timerIsCompletedSub.complete();
+    this.resetFormSub.unsubscribe();
   }
 
 }

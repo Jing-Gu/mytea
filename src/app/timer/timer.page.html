@@ -1,11 +1,11 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class='ion-no-padding'>
     <div class='tabs'>
-      <ion-text (click)='chooseTea("green")' [class.active]="currentTab === 'green'" [class.disable]='timerIsOn'>Green</ion-text>
-      <ion-text (click)='chooseTea("oolong")'[class.active]="currentTab === 'oolong'" [class.disable]='timerIsOn'>Oolong</ion-text>
-      <ion-text (click)='chooseTea("red")' [class.active]="currentTab === 'red'" [class.disable]='timerIsOn'>Red</ion-text>
-      <ion-text (click)='chooseTea("puer")' [class.active]="currentTab === 'puer'" [class.disable]='timerIsOn'>Pu-er</ion-text>
-      <ion-text (click)='chooseTea("herbal")' [class.active]="currentTab === 'herbal'" [class.disable]='timerIsOn'>Herbal</ion-text>
+      <ion-text (click)='chooseTea("green")' [class.active]="currentTab === 'green'" [class.disable]='disableTab'>Green</ion-text>
+      <ion-text (click)='chooseTea("oolong")'[class.active]="currentTab === 'oolong'" [class.disable]='disableTab'>Oolong</ion-text>
+      <ion-text (click)='chooseTea("red")' [class.active]="currentTab === 'red'" [class.disable]='disableTab'>Red</ion-text>
+      <ion-text (click)='chooseTea("puer")' [class.active]="currentTab === 'puer'" [class.disable]='disableTab'>Pu-er</ion-text>
+      <ion-text (click)='chooseTea("herbal")' [class.active]="currentTab === 'herbal'" [class.disable]='disableTab'>Herbal</ion-text>
     </div>
   </ion-toolbar>
 </ion-header>

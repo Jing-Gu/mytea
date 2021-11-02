@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimerService } from '../../timer.service';
 import { Tea } from '../models/tea.interface';
@@ -18,19 +18,17 @@ export class BrewtimerComponent implements OnInit, OnDestroy {
 
   startTimer() {
     this.timerIsOn = true;
+    this.timerService.disableTabSub.next(true);
   }
 
   resetTimer() {
     this.timerIsOn = false;
+    this.timerService.disableTabSub.next(false);
     this.timerService.timerIsCompletedSub.next(true);
   }
 
-
   ngOnInit() {
-    console.log('from brewtimer, timer is on?', this.timerIsOn);
-
     this.timerService.timerIsCompleted$.subscribe(comp => {
-      console.log('completed full?', comp);
       if(comp) {
         this.timerIsOn = false;
       }
@@ -38,12 +36,12 @@ export class BrewtimerComponent implements OnInit, OnDestroy {
   }
 
   goToCustomize() {
-    //this.currentTea = this.allTeas.customizeTea;
     this.router.navigate(['/tabs/timer/customize-timer'], { queryParams: { page: 1 } });
   }
 
   ngOnDestroy() {
     this.timerService.timerIsCompletedSub.complete();
+    this.timerService.disableTabSub.complete();
   }
 
 }

@@ -1,8 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TimerService } from './timer.service';
-import { AllTeas } from './components/models/allTea.model';
-import { Tea } from './components/models/tea.interface';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-timer',
@@ -65,25 +62,18 @@ export class TimerPage implements OnInit {
 
   currentTab = 'green';
   currentTea = this.allTeas.green;
-  timerIsOn = false;
+  disableTab = false;
 
-  constructor(private timerService: TimerService,
-    private cdf: ChangeDetectorRef) {}
+  constructor(private timerService: TimerService) {}
 
   ngOnInit() {
-    this.timerService.timerIsCompleted$.subscribe(comp => {
-      if (!comp) {
-        this.timerIsOn = true;
-        this.cdf.detectChanges();
-      } else {
-        this.timerIsOn = false;
-        this.cdf.detectChanges();
-      }
+    this.timerService.disableTab$.subscribe(dis => {
+      this.disableTab = dis;
     });
   }
 
   chooseTea(tea) {
-    if(!this.timerIsOn) {
+    if(!this.disableTab) {
       this.currentTea = this.allTeas[tea];
       this.currentTab = tea;
     }

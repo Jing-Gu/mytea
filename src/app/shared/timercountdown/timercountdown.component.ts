@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { TimerService } from '../../timer/timer.service';
 import { Tea } from '../../timer/components/models/tea.interface';
@@ -9,7 +9,7 @@ import { TeareadypopupComponent } from '../../timer/components/teareadypopup/tea
   templateUrl: './timercountdown.component.html',
   styleUrls: ['./timercountdown.component.scss'],
 })
-export class TimercountdownComponent implements OnInit, OnChanges {
+export class TimercountdownComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() currentTea: Tea;
   @Input() customizedTimer: number;
@@ -32,7 +32,7 @@ export class TimercountdownComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
-      console.log('ngchange curr tea', this.currentTea, 'received: is timer on?', this.timerIsOn);
+      // console.log('ngchange received: is timer on?', this.timerIsOn);
 
       if (this.currentTea.name !== 'customization') {
         this.checkDefaultBrewTime(this.currentTea.brewTime);
@@ -83,7 +83,6 @@ export class TimercountdownComponent implements OnInit, OnChanges {
       if (this.secondsLeft < 0) {
         clearInterval(this.countdown);
         this.displayTimeLeft(0);
-        console.log('complete');
         this.presentPopover();
         return;
       }
@@ -97,7 +96,6 @@ export class TimercountdownComponent implements OnInit, OnChanges {
     clearInterval(this.countdown);
     this.gaugePercent = 0;
     this.brewingTime = this.brewingTimeDefault;
-    console.log('reset from child countdown');
   }
 
   async presentPopover() {
@@ -108,11 +106,19 @@ export class TimercountdownComponent implements OnInit, OnChanges {
     });
     await popover.present();
     popover.onDidDismiss().then(data => {
-      console.log('data', data);
       this.resetTimer();
       this.timerService.timerIsCompletedSub.next(true);
+      this.timerService.disableTabSub.next(false);
+      if (this.currentTea.name === 'customization') {
+        this.timerService.resetFormSub.next(true);
+      }
     });
   }
 
+  ngOnDestroy() {
+    this.timerService.timerIsCompletedSub.complete();
+    this.timerService.disableTabSub.complete();
+    this.timerService.resetFormSub.complete();
+  }
 
 }
