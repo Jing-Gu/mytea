@@ -21,7 +21,16 @@ const routes: Routes = [
       },
       {
         path: 'read',
-        loadChildren: () => import('../read/read.module').then(m => m.ReadPageModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../read/read.module').then(m => m.ReadPageModule)
+          },
+          {
+            path: 'detail',
+            loadChildren: () => import('../read/tea-detail/tea-detail.module').then(m => m.TeaDetailPageModule)
+          }
+        ]
       },
       {
         path: 'more',
