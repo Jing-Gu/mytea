@@ -1,0 +1,18 @@
+<ng-container *ngIf='showAllTeas; else showTimer'>
+  <div class="tea-group">
+    <button class="tea-tile" *ngFor="let tea of allTeas" (click)='goToTimer(tea)'>
+      <img src='assets/icon/{{tea.icon}}' alt=''>
+      <span>{{tea.label}}</span>
+    </button>
+    <!-- <a routerLink="timerrr" [queryParams]="{label:tea.label, teaAmount: tea.teaAmount, waterAmount: tea.waterAmount, temperature: tea.temperature, brewTime: tea.brewTime, icon: tea.icon}"
+      class="tea-tile" *ngFor="let tea of allTeas">
+      <img src='assets/icon/{{tea.icon}}' alt=''>
+      <span>{{tea.label}}</span>
+    </a> -->
+  </div>
+
+</ng-container>
+<ng-template #showTimer>
+  <app-timer [currentTea]='currentTea'></app-timer>
+</ng-template>
+<!-- (backToMainPage)='goBack($event)' -->

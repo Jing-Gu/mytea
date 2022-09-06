@@ -1,17 +1,16 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { TimerService } from '../../timer/timer.service';
-import { Tea } from '../../timer/components/models/tea.interface';
-import { TeareadypopupComponent } from '../../timer/components/teareadypopup/teareadypopup.component';
+import { TimerService } from '../../brew/timer.service';
+import { TeareadypopupComponent } from '../../brew/components/teareadypopup/teareadypopup.component';
 
 @Component({
   selector: 'app-timercountdown',
   templateUrl: './timercountdown.component.html',
   styleUrls: ['./timercountdown.component.scss'],
 })
-export class TimercountdownComponent implements OnInit, OnChanges, OnDestroy {
+export class TimercountdownComponent implements OnInit, OnDestroy {
 
-  @Input() currentTea: Tea;
+  @Input() currentTea;
   @Input() customizedTimer: number;
   @Input() timerIsOn: boolean;
   brewSeconds: number;
@@ -29,27 +28,41 @@ export class TimercountdownComponent implements OnInit, OnChanges, OnDestroy {
 
 
     ngOnInit() {
+      /* this.checkDefaultBrewTime(this.currentTea.brewTime);
+      this.timerService.startTimer$.subscribe(on => {
+        this.timerIsOn = on;
+        if (on) {
+          if (this.currentTea.label !== 'Customize') {
+            this.calcTimer(this.currentTea.brewTime);
+          }
+          if (this.currentTea.label === 'Customize') {
+            this.calcTimer(this.customizedTimer);
+          }
+        } else {
+          this.resetTimer();
+        }
+      }) */
+     /*  this.timerService.cancelTimer$.subscribe(c => {
+        if (c) {
+          this.resetTimer();
+        }
+      }) */
     }
 
     ngOnChanges() {
-      // console.log('ngchange received: is timer on?', this.timerIsOn);
-
-      if (this.currentTea.name !== 'customization') {
-        this.checkDefaultBrewTime(this.currentTea.brewTime);
-        if (this.timerIsOn) {
-          this.timer(this.currentTea.brewTime);
-        } else {
-          this.resetTimer();
+      console.log('check timer change', this.timerIsOn)
+      this.checkDefaultBrewTime(this.currentTea.brewTime);
+      if (this.timerIsOn) {
+        if (this.currentTea.label !== 'Customize') {
+          this.calcTimer(this.currentTea.brewTime);
         }
+        if (this.currentTea.label === 'Customize') {
+          this.calcTimer(this.customizedTimer);
+        }
+      } else {
+        this.resetTimer();
       }
 
-      if (this.currentTea.name === 'customization') {
-        if(this.timerIsOn){
-          this.timer(this.customizedTimer);
-        } else {
-          this.resetTimer();
-        }
-      }
     }
 
   checkDefaultBrewTime(brewSecondsDefault) {
@@ -60,8 +73,7 @@ export class TimercountdownComponent implements OnInit, OnChanges, OnDestroy {
       this.brewMinutes = Math.floor(brewSecondsDefault/60);
       this.brewSeconds = brewSecondsDefault % 60;
     }
-    this.brewingTimeDefault = `
-      ${this.brewMinutes < 1 ? '0' : ''}${this.brewMinutes}:${this.brewSeconds < 10 ? '0' : ''}${this.brewSeconds}`;
+    this.brewingTimeDefault = `${this.brewMinutes < 1 ? '0' : ''}${this.brewMinutes}:${this.brewSeconds < 10 ? '0' : ''}${this.brewSeconds}`;
     this.brewingTime = this.brewingTimeDefault;
   }
 
@@ -71,25 +83,24 @@ export class TimercountdownComponent implements OnInit, OnChanges, OnDestroy {
     this.brewingTime = `${this.brewMinutes < 1 ? '0' : ''}${this.brewMinutes}:${this.brewSeconds < 10 ? '0' : ''}${this.brewSeconds}`;
   }
 
-  timer(seconds) {
+  calcTimer(seconds) {
     clearInterval(this.countdown);
     const now = Date.now();
     const then = now + seconds * 1000;
 
-    this.displayTimeLeft(seconds);
+    //this.displayTimeLeft(seconds);
     this.countdown = setInterval( () => {
-      this.secondsLeft = Math.round((then - Date.now()) / 1000);
+      this.secondsLeft = Math.ceil((then - Date.now()) / 1000);
       this.gaugePercent = 100 - Math.ceil((this.secondsLeft / seconds) * 100);
       if (this.secondsLeft < 0) {
+        //this.displayTimeLeft(0);
         clearInterval(this.countdown);
-        this.displayTimeLeft(0);
         this.presentPopover();
         return;
       }
       this.displayTimeLeft(this.secondsLeft);
       console.log('left', this.secondsLeft, '%', this.gaugePercent);
     }, 1000);
-    this.timerService.timerIsCompletedSub.next(false);
   }
 
   resetTimer() {
@@ -102,23 +113,16 @@ export class TimercountdownComponent implements OnInit, OnChanges, OnDestroy {
     const popover = await this.popoverController.create({
       component: TeareadypopupComponent,
       cssClass: 'my-custom-class',
-      translucent: true
     });
     await popover.present();
     popover.onDidDismiss().then(data => {
       this.resetTimer();
-      this.timerService.timerIsCompletedSub.next(true);
-      this.timerService.disableTabSub.next(false);
-      if (this.currentTea.name === 'customization') {
-        this.timerService.resetFormSub.next(true);
-      }
+      this.timerService.startTimer.next(false);
     });
   }
 
   ngOnDestroy() {
-    this.timerService.timerIsCompletedSub.complete();
-    this.timerService.disableTabSub.complete();
-    this.timerService.resetFormSub.complete();
+    this.timerService.startTimer.complete();
   }
 
 }

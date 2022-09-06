@@ -17,7 +17,9 @@ import { AppComponent } from './app.component'
   imports: [
     BrowserModule,
     SharedModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      mode: 'md', //uniform ui of ios and android (// ios or md)
+    }),
     MarkdownModule.forRoot(),
     AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

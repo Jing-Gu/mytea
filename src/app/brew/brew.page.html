@@ -1,0 +1,20 @@
+<ion-header [class.hide]="hideHeader">
+  <ion-toolbar>
+    <h1>Brew</h1>
+    <div class='tabs'>
+      <ion-text (click)='selectTimer("standard")' [class.active]="currentTab === 'standard'">Standard</ion-text>
+      <ion-text (click)='selectTimer("master")' [class.active]="currentTab === 'master'">TGuru Master</ion-text>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="currentTab === 'standard'; else tmaster">
+    <app-tstandard></app-tstandard>
+  </ng-container>
+  <ng-template #tmaster>
+    <app-tmaster></app-tmaster>
+  </ng-template>
+
+
+</ion-content>

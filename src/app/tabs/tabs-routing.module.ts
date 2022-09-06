@@ -8,15 +8,15 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'timer',
+        path: 'brew',
         children: [
           { path: '',
-            loadChildren: () => import('../timer/timer.module').then(m => m.TimerPageModule)
+            loadChildren: () => import('../brew/brew.module').then(m => m.BrewPageModule)
           },
-          {
-            path: 'customize-timer',
-            loadChildren: () => import('../timer/customize-timer/customize-timer.module').then(m => m.CustomizeTimerPageModule)
-          }
+/*           {
+            path: 'timer',
+            loadChildren: () => import('../brew/timer/timer.module').then(m => m.TimerPageModule)
+          } */
         ]
       },
       {
@@ -45,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/timer',
+    redirectTo: '/tabs/brew',
     pathMatch: 'full'
   }
 ];

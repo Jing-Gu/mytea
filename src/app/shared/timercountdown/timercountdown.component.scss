@@ -5,7 +5,7 @@
       transform: translateX(-50%);
       ngx-gauge-label {
         display: inline-block;
-        width: 45px;
+        width: 80px;
       }
       .reading-block {
         display: none !important;
@@ -23,7 +23,10 @@
   font-weight: bold;
   letter-spacing: 8px;
   text-align: center;
-  color: var(--green-500);
-  margin: .5rem 0 3rem 0;
+  color: var(--dark-navy);
+  margin: .5rem 0 1.5rem 0;
 }
 
+img {
+  filter: invert(56%) sepia(78%) saturate(498%) hue-rotate(34deg) brightness(101%) contrast(75%);
+}
