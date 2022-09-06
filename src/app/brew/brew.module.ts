@@ -11,6 +11,7 @@ import { BrewPage } from './brew.page';
 import { TstandardComponent } from './components/tstandard/tstandard.component';
 import { TmasterComponent } from './components/tmaster/tmaster.component';
 import { TimerComponent } from './components/timer/timer.component';
+import { TeareadypopupComponent } from './components/teareadypopup/teareadypopup.component'
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { TimerComponent } from './components/timer/timer.component';
     SharedModule,
     BrewPageRoutingModule
   ],
-  declarations: [BrewPage, TstandardComponent, TmasterComponent, TimerComponent]
+  declarations: [BrewPage, TstandardComponent, TmasterComponent, TimerComponent, TeareadypopupComponent]
 })
 export class BrewPageModule {}

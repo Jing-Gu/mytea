@@ -5,6 +5,7 @@ import { MarkdownModule } from 'ngx-markdown'
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 import { SharedModule } from './shared/shared.module'
+//import { BrewPageModule } from './brew/brew.module'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -17,6 +18,7 @@ import { AppComponent } from './app.component'
   imports: [
     BrowserModule,
     SharedModule,
+    //BrewPageModule,
     IonicModule.forRoot({
       mode: 'md', //uniform ui of ios and android (// ios or md)
     }),
