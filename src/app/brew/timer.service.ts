@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -7,15 +7,11 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class TimerService {
 
-  startTimer = new Subject<boolean>();
-  startTimer$ = this.startTimer.asObservable();
-
-
-
   cancelTimer = new BehaviorSubject<boolean>(true);
   cancelTimer$ = this.cancelTimer.asObservable();
 
-  //currentTimer = new
+  timerDone = new BehaviorSubject<boolean>(true);
+  timerDone$ = this.timerDone.asObservable();
 
   constructor() { }
 

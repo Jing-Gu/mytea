@@ -17,6 +17,9 @@
 @import 'scss/styles.scss';
 
 body {
+  h1,h2,h3,h4{
+    color: var(--dark-navy);
+  }
   p {
     color: var(--dark-navy);
   }

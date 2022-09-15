@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { TimerService } from './timer.service'
 
 @Component({
@@ -16,19 +16,11 @@ export class BrewPage implements OnInit {
   ngOnInit() {
     this.timerService.cancelTimer$.subscribe(c => {
       this.hideHeader = !c
-      console.log('hide?', c)
     })
-    /* this.timerService.startTimer$.subscribe(s => {
-      this.hideTab = s
-    }) */
   }
 
   selectTimer(tab) {
-    this.currentTab = tab;
+    this.currentTab = tab
   }
-/*
-  disableMaster() {
-    this.disableTab = true
-  } */
 
 }

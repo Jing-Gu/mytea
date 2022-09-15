@@ -1,7 +1,7 @@
 [
   {
     "name": "white",
-    "label": "White Tea",
+    "label": "Thé Blanc",
     "teaAmount": 5,
     "waterAmount": 250,
     "temperature": 70,
@@ -9,8 +9,17 @@
     "icon": "white_tea.svg"
   },
   {
+    "name": "yellow",
+    "label": "Thé Jaune",
+    "teaAmount": 5,
+    "waterAmount": 250,
+    "temperature": 70,
+    "brewTime": 10,
+    "icon": "yellow_tea.svg"
+  },
+  {
     "name": "green",
-    "label": "Green Tea",
+    "label": "Thé Vert",
     "teaAmount": 5,
     "waterAmount": 250,
     "temperature": 70,
@@ -19,7 +28,7 @@
   },
   {
     "name": "oolong",
-    "label": "Oolong Tea",
+    "label": "Thé Wulong",
     "teaAmount": 5,
     "waterAmount": 250,
     "temperature": 90,
@@ -27,8 +36,17 @@
     "icon": "oolong_tea.svg"
   },
   {
-    "name": "puerh",
-    "label": "Pu-Erh",
+    "name": "sheng-puerh",
+    "label": "Thé Puerh Sheng",
+    "teaAmount": 5,
+    "waterAmount": 250,
+    "temperature": 100,
+    "brewTime": 35,
+    "icon": "pu_er_tea.svg"
+  },
+  {
+    "name": "shou-puerh",
+    "label": "Thé Puerh Shou",
     "teaAmount": 5,
     "waterAmount": 250,
     "temperature": 100,
@@ -36,17 +54,8 @@
     "icon": "pu_er_tea.svg"
   },
   {
-    "name": "red",
-    "label": "Red Tea",
-    "teaAmount": 5,
-    "waterAmount": 250,
-    "temperature": 90,
-    "brewTime": 90,
-    "icon": "red_tea.svg"
-  },
-  {
-    "name": "black",
-    "label": "Black Tea",
+    "name": "red-black",
+    "label": "Thé Rouge-Noir",
     "teaAmount": 5,
     "waterAmount": 250,
     "temperature": 90,
@@ -55,7 +64,7 @@
   },
   {
     "name": "herbal",
-    "label": "Herbal Tea",
+    "label": "Tisane",
     "teaAmount": 5,
     "waterAmount": 250,
     "temperature": 90,
@@ -64,7 +73,7 @@
   },
   {
     "name": "customize",
-    "label": "Customize",
+    "label": "Minuterie Manuelle",
     "teaAmount": 0,
     "waterAmount": 0,
     "temperature": 0,

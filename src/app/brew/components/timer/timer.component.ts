@@ -1,7 +1,6 @@
 
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { NgForm } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
 import { TimerService } from '../../timer.service'
 
 @Component({
@@ -9,59 +8,38 @@ import { TimerService } from '../../timer.service'
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
 })
-export class TimerComponent implements OnInit, OnDestroy {
+export class TimerComponent {
 
   @Input() currentTea
-  timerIsOn: boolean
-  //@Output() backToMainPage = new EventEmitter<boolean>()
+  timerIsOff = true
   customizedTimeInSeconds: number;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private timerService: TimerService) {}
-
-  ngOnInit() {
-    /* this.timerService.startTimer$.subscribe(on => {
-      this.timerIsOn = on
-    }) */
-  }
-
-
+  constructor(private timerService: TimerService) {}
 
   startTimer() {
-    this.timerIsOn = true
-    //this.timerService.startTimer.next(true);
+    this.timerIsOff = false
   }
 
   resetTimer() {
-    this.timerIsOn = false
-    //this.timerService.startTimer.next(false);
+    this.timerIsOff = true
   }
 
   cancelTimer() {
-    //this.timerIsOn = false
-    //this.backToMainPage.emit(true)
     this.timerService.cancelTimer.next(true)
-
-    //this.timerService.startTimer.next(false);
-
   }
 
   setCustomTimer(timerForm: NgForm) {
-    this.timerIsOn = true
-    //this.timerService.startTimer.next(true);
+    this.timerIsOff = false
     this.customizedTimeInSeconds = timerForm.value.minutes * 60 + timerForm.value.seconds;
   }
 
   resetCustomTimer(timerForm: NgForm) {
-    this.timerIsOn = false
-    //this.timerService.startTimer.next(false);
+    this.timerIsOff = true
     timerForm.resetForm();
   }
 
-  ngOnDestroy() {
-    //this.timerService.startTimer.complete();
+  setTimerDone() {
+    this.timerIsOff = true
   }
 
 }
